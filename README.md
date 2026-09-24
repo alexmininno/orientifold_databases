@@ -95,7 +95,7 @@ Examples:
 
 ### 3. `generate_trilayer_orientifolds.py`
 
-This script computes the orientifold data for the geometries contained in the `databases/trilayer.json` database. These trilayer polytopes define Calabi--Yau threefold hypersurfaces embedded in a four-dimensional ambient toric variety. For cases where the origin is the unique lattice point with a vanishing fourth coordinate in the four-dimensional polytope, the orientifold quotient $B_3 = \IX_3/\iota$ is a toric threefold. 
+This script computes the orientifold data for the geometries contained in the `databases/trilayer.json` database. These trilayer polytopes define Calabi--Yau threefold hypersurfaces embedded in a four-dimensional ambient toric variety. For cases where the origin is the unique lattice point with a vanishing fourth coordinate in the four-dimensional polytope, the orientifold quotient $B_3 = X_3/\iota$ is a toric threefold. 
 
 The F-theory uplift is constructed directly as a generic Weierstrass model over $B_3$. When $B_3$ contains rigid toric divisors intersecting the O7-plane, non-Higgsable clusters (NHCs) arise, forcing an $I_0^*$ degeneration of the elliptic fiber. Resolving these singularities requires crepant toric blowups in the ambient space. The script parses the input geometries, extracts the allowed orientifold involutions, and evaluates the corresponding D3-brane tadpole cancellation conditions. The output is stored in `databases/trilayer_orientifolds.json`.
 
@@ -173,18 +173,18 @@ for cy in db:
 
 ### 5. `verify_all_intB_relations.py`
 
-This script verifies the topological intersection relations between the Calabi--Yau threefold $\IX_3$ and its orientifold quotient base $B_3$. In the trilayer construction, the Calabi--Yau threefold $\IX_3$ embeds as a bisection of an auxiliary genus one fibered Calabi--Yau fourfold $\widetilde{\IY}_4$ defined over $B_3$. Applying the adjunction formula to this geometry evaluates the topological invariants of $\IX_3$ directly from the intersection data of $B_3$.
+This script verifies the topological intersection relations between the Calabi--Yau threefold $X_3$ and its orientifold quotient base $B_3$. In the trilayer construction, the Calabi--Yau threefold $X_3$ embeds as a bisection of an auxiliary genus one fibered Calabi--Yau fourfold $\widetilde{\IY}_4$ defined over $B_3$. Applying the adjunction formula to this geometry evaluates the topological invariants of $X_3$ directly from the intersection data of $B_3$.
 
 Using `cytools`, the script constructs the corresponding toric varieties and verifies the following identities:
 
 1. **Triple Intersections**:
-   $$\int_{\IX_3} k_a \wedge k_b \wedge k_c = 2 \kappa_{abc} = 2 \int_{B_3} j_a \wedge j_b \wedge j_c$$
+   $$\int_{X_3} k_a \wedge k_b \wedge k_c = 2 \kappa_{abc} = 2 \int_{B_3} j_a \wedge j_b \wedge j_c$$
 2. **Second Chern Class Contractions**:
-   $$\int_{\IX_3} c_2(T\IX_3) \wedge k_a = 2 \int_{B_3} j_a \wedge \left(c_1^2(TB_3) + c_2(TB_3)\right)$$
+   $$\int_{X_3} c_2(TX_3) \wedge k_a = 2 \int_{B_3} j_a \wedge \left(c_1^2(TB_3) + c_2(TB_3)\right)$$
 3. **Euler Characteristics**:
-   $$\chi(\IX_3) = 2 \int_{B_3} \left(c_3(TB_3) - c_1(TB_3)c_2(TB_3) - 2c_1(TB_3)^3\right)$$
+   $$\chi(X_3) = 2 \int_{B_3} \left(c_3(TB_3) - c_1(TB_3)c_2(TB_3) - 2c_1(TB_3)^3\right)$$
 
-Here, $k_a$ are the K\"ahler cone generators on $\IX_3$ induced by its embedding into $\widetilde{\IY}_4$, $\kappa_{abc}$ are the intersection numbers on $B_3$, and $j_a$ are the K\"ahler cone generators on the base $B_3$.
+Here, $k_a$ are the K\"ahler cone generators on $X_3$ induced by its embedding into $\widetilde{\IY}_4$, $\kappa_{abc}$ are the intersection numbers on $B_3$, and $j_a$ are the K\"ahler cone generators on the base $B_3$.
 
 #### Usage:
 
@@ -224,7 +224,7 @@ Each orientifold entry explicitly contains the following fields:
 - `integer_hodge`: A boolean indicating whether the equivariant Hodge numbers are strictly integers.
 
 ### Equivariant Hodge Numbers
-The orientifold projection splits the cohomology groups $H^{p,q}(\IX_3)$ into even and odd eigenspaces under the pull-back of the involution, decomposing the K\"ahler and complex structure moduli spaces into invariant and anti-invariant sectors. The dimensions of these eigenspaces are determined by:
+The orientifold projection splits the cohomology groups $H^{p,q}(X_3)$ into even and odd eigenspaces under the pull-back of the involution, decomposing the K\"ahler and complex structure moduli spaces into invariant and anti-invariant sectors. The dimensions of these eigenspaces are determined by:
 $$h^{1,1}_{\pm} = \frac{1}{2} \left(h^{1,1} \pm \text{Tr}(\Lambda)\right)$$
 $$h^{2,1}_+ = \frac{1}{2} \left( h^{2,1} + 1 - S_O + h^{1,1}_+ - h^{1,1}_- - \frac{1}{2} \chi_{\text{fix}} \right)$$
 $$h^{2,1}_- = h^{2,1} - h^{2,1}_+$$
@@ -251,20 +251,20 @@ For a specific combination of O7-plane configurations, the JSON logs:
 - `chi_D7`: The total D7-brane Euler characteristic for this configuration.
 
 **D3-Brane Charges:**
-The net D3-brane charge $N_{D3}$ induced by the localized sources is evaluated in the double cover $\IX_3$:
+The net D3-brane charge $N_{D3}$ induced by the localized sources is evaluated in the double cover $X_3$:
 $$N_{D3} = \frac{N_{O3}}{2} + \frac{\chi(S)}{6} + \frac{\chi(S_{D7})}{24}$$
 - `N_D3`: The fractional D3-charge budget.
 - `N_flux_frac`: The fractional part of the gauge flux contribution.
 - `N_D3_mobile_max`: The maximum integer number of mobile D3-branes.
 
 For a generic smooth divisor $S_{D7}$, the Euler characteristic is computed by integrating the top Chern class via the adjunction formula:
-$$\chi(S_{D7}) = \int_{\IX_3} \left( [S_{D7}]^3 + c_2(T\IX_3) \wedge [S_{D7}] \right)$$
+$$\chi(S_{D7}) = \int_{X_3} \left( [S_{D7}]^3 + c_2(TX_3) \wedge [S_{D7}] \right)$$
 
 If an O7-plane wraps a rigid divisor, the tadpole is canceled locally by an $\text{SO}(8)$ stack—four D7-branes and their orientifold images placed exactly on the O7-plane locus $S$. Their total Euler characteristic is eight times that of $S$:
-$$\chi(S_{D7_{\mathrm{SO}(8)}}) = 8 \chi(S) = \int_{\IX_3} \left( 8 [S]^3 + 8 c_2(T\IX_3) \wedge [S] \right)$$
+$$\chi(S_{D7_{\mathrm{SO}(8)}}) = 8 \chi(S) = \int_{X_3} \left( 8 [S]^3 + 8 c_2(TX_3) \wedge [S] \right)$$
 
 If the wrapped divisor admits complex structure deformations, the branes can recombine into a Whitney umbrella wrapping the homology class $8[S]$. The singular locus of the umbrella shifts the Euler characteristic:
-$$\chi(S_{D7_{\text{WU}}}) = \int_{\IX_3} \left( 344 [S]^3 + 8 c_2(T\IX_3) \wedge [S] \right)$$
+$$\chi(S_{D7_{\text{WU}}}) = \int_{X_3} \left( 344 [S]^3 + 8 c_2(TX_3) \wedge [S] \right)$$
 
 In the code, the $\text{SO}(8)$ stack contributes $8 \cdot (\text{c2D\_op} + \text{D3\_op})$, whereas the Whitney umbrella contributes $8 \cdot \text{c2D\_op} + 344 \cdot \text{D3\_op}$.
 
