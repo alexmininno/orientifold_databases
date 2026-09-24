@@ -3,6 +3,17 @@ Verification script to check intersection relations between orientifold bases (B
 and their Calabi-Yau threefold (X3) double covers.
 """
 
+import os
+import warnings
+
+warnings.filterwarnings("ignore", category=UserWarning)
+
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
+os.environ["VECLIB_MAXIMUM_THREADS"] = "1"
+os.environ["NUMEXPR_NUM_THREADS"] = "1"
+
 import json
 
 import cytools

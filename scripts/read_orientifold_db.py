@@ -2,9 +2,19 @@
 Utility script to read and summarize an orientifold database JSON file.
 """
 
+import os
+import warnings
+
+warnings.filterwarnings("ignore", category=UserWarning)
+
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
+os.environ["VECLIB_MAXIMUM_THREADS"] = "1"
+os.environ["NUMEXPR_NUM_THREADS"] = "1"
+
 import argparse
 import json
-import os
 
 
 def load_orientifold_db(filepath):
@@ -29,11 +39,11 @@ def load_orientifold_db(filepath):
 def print_summary(db):
     """
     Print a basic summary of the loaded database.
-    
+
     Calculates and displays the total number of Calabi-Yau threefolds,
     triangulations, and orientifold configurations in the database.
     It also prints an example sample from the first Calabi-Yau entry.
-    
+
     Args:
         db (list): A list of dictionaries representing the database.
     """
