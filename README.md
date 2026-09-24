@@ -173,7 +173,7 @@ for cy in db:
 
 ### 5. `verify_all_intB_relations.py`
 
-This script verifies the topological intersection relations between the Calabi--Yau threefold $X_3$ and its orientifold quotient base $B_3$. In the trilayer construction, the Calabi--Yau threefold $X_3$ embeds as a bisection of an auxiliary genus one fibered Calabi--Yau fourfold $\widetilde{\IY}_4$ defined over $B_3$. Applying the adjunction formula to this geometry evaluates the topological invariants of $X_3$ directly from the intersection data of $B_3$.
+This script verifies the topological intersection relations between the Calabi--Yau threefold $X_3$ and its orientifold quotient base $B_3$. In the trilayer construction, the Calabi--Yau threefold $X_3$ embeds as a bisection of an auxiliary genus one fibered Calabi--Yau fourfold $\widetilde{Y}_4$ defined over $B_3$. Applying the adjunction formula to this geometry evaluates the topological invariants of $X_3$ directly from the intersection data of $B_3$.
 
 Using `cytools`, the script constructs the corresponding toric varieties and verifies the following identities:
 
@@ -184,7 +184,7 @@ Using `cytools`, the script constructs the corresponding toric varieties and ver
 3. **Euler Characteristics**:
    $$\chi(X_3) = 2 \int_{B_3} \left(c_3(TB_3) - c_1(TB_3)c_2(TB_3) - 2c_1(TB_3)^3\right)$$
 
-Here, $k_a$ are the K\"ahler cone generators on $X_3$ induced by its embedding into $\widetilde{\IY}_4$, $\kappa_{abc}$ are the intersection numbers on $B_3$, and $j_a$ are the K\"ahler cone generators on the base $B_3$.
+Here, $k_a$ are the K\"ahler cone generators on $X_3$ induced by its embedding into $\widetilde{Y}_4$, $\kappa_{abc}$ are the intersection numbers on $B_3$, and $j_a$ are the K\"ahler cone generators on the base $B_3$.
 
 #### Usage:
 
@@ -269,16 +269,16 @@ $$\chi(S_{D7_{\text{WU}}}) = \int_{X_3} \left( 344 [S]^3 + 8 c_2(TX_3) \wedge [S
 In the code, the $\text{SO}(8)$ stack contributes $8 \cdot (\text{c2D\_op} + \text{D3\_op})$, whereas the Whitney umbrella contributes $8 \cdot \text{c2D\_op} + 344 \cdot \text{D3\_op}$.
 
 **Fourfold Euler Characteristics:**
-The D3-brane tadpole evaluated in the F-theory uplift requires the "stringy" Euler characteristic of the Calabi--Yau fourfold, $\chi_{\text{st}}(\IY_4)$, which includes stringy corrections from terminal $\mathbb{Z}_2$ quotient singularities induced by O3-planes:
-- `chi_Y4_corrected`: The stringy Euler characteristic $\chi_{\text{st}}(\IY_4) = 24 \cdot \frac{N_{D3}}{2}$.
+The D3-brane tadpole evaluated in the F-theory uplift requires the "stringy" Euler characteristic of the Calabi--Yau fourfold, $\chi_{\text{st}}(Y_4)$, which includes stringy corrections from terminal $\mathbb{Z}_2$ quotient singularities induced by O3-planes:
+- `chi_Y4_corrected`: The stringy Euler characteristic $\chi_{\text{st}}(Y_4) = 24 \cdot \frac{N_{D3}}{2}$.
 - `chi_Y4_correction_O3`: The stringy correction $6 N_{O3}$.
-- `chi_Y4_naive`: The naive integral of the top Chern class, derived by subtracting $6 N_{O3}$ from $\chi_{\text{st}}(\IY_4)$.
+- `chi_Y4_naive`: The naive integral of the top Chern class, derived by subtracting $6 N_{O3}$ from $\chi_{\text{st}}(Y_4)$.
 - `nodal_singularities`: A boolean evaluating whether $n^S_{df=0} \neq 0$.
 - `n_S_df0`: The singularity count $n^S_{df=0} = \int_{O7} (c_2(S) - c_1(S)^2)$.
 
 **ED3 Instanton Divisors:**
 To generate a non-perturbative superpotential to stabilize K\"ahler moduli, an ED3-instanton must carry exactly two neutral fermionic zero modes. Complete geometric rigidity ($h^{1,0}(D) = h^{2,0}(D) = 0$) guarantees the absence of additional deformation moduli or Wilson lines.
-- `ed3_instantons`: Evaluates completely rigid divisors wrapping ED3-instantons. This includes their Hodge numbers (`h10`, `h20`, `h11`) and the stringy vertical divisor Euler characteristic $\chi_{\text{st}}(\overline{D}) = \chi_{\text{naive}}(\overline{D}) + 6N_{O3}(\widehat{D})$.
+- `ed3_instantons`: Evaluates completely rigid divisors wrapping ED3-instantons. This includes their Hodge numbers (`h10`, `h20`, `h11`) and the stringy vertical divisor Euler characteristic $\chi(\overline{D}) = \chi_{\text{naive}}(\overline{D}) + 6N_{O3}(\widehat{D})$.
 
 ### O-Planes (`OPLANES`)
 The list of fixed O-planes resulting from the orientifold equations. Each entry contains:
