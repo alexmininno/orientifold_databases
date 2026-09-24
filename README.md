@@ -10,7 +10,124 @@ We require the `cytools` environment.
 
 Computing prime toric divisor cohomologies requires `cohomcalg` to be installed and accessible via the `PATH` environment variable, or by setting `COHOMCALG_PATH` explicitly.
 
+## Input Databases and Theoretical Background
+
+The algebraic torus $T$ defining the ambient toric variety specifies a lattice $N = \mathrm{Hom}(\mathbb{C}^*, T) \simeq \mathbb{Z}^d$ and a dual character lattice $M = \mathrm{Hom}(T, \mathbb{C}^*) \simeq \mathbb{Z}^d$, alongside their real vector spaces $N_\mathbb{R} = N\otimes_\mathbb{Z} \mathbb{R}$ and $M_\mathbb{R} = M\otimes_\mathbb{Z} \mathbb{R}$. The Calabi--Yau geometry is determined by a polytope $\Delta\subset M_\mathbb{R}$ and its dual $\Delta^\circ\subset N_\mathbb{R}$. The geometric data of the ambient space is captured by the normal fan $\Sigma_\Delta \subset N_\mathbb{R}$, constructed from the cones over the proper faces of $\Delta^\circ$. This database contains the fundamental three-dimensional lattice polytopes $\Delta_3$.
+
+Calabi--Yau threefold hypersurfaces in toric ambient spaces are constructed via the correspondence between toric varieties and reflexive lattice polytopes. For a reflexive polytope $\Delta$ and its dual $\Delta^\circ$, the normal fan of $\Delta^\circ$ defines a toric fourfold containing a Calabi--Yau hypersurface. This hypersurface is resolved by refining the fan through a Fine, Regular, Star Triangulation (FRST) of $\Delta^\circ$. The Calabi--Yau is defined as the zero locus of a generic anticanonical polynomial, with its topological invariants—such as Hodge numbers and intersection numbers—extracted directly from the polytope combinatorics and the gauged linear sigma model (GLSM) charges of the toric divisors.
+
+To uplift a given Calabi--Yau threefold $X_3$ to an elliptically fibered Calabi--Yau fourfold $\pi: Y_4\to B_3$, a Weierstrass model is constructed over the orientifold quotient base $B_3= X_3/\iota$. A controlled class of such Calabi--Yau orientifolds is obtained through the trilayer polytope construction. Here, $X_3$ is realized as a hypersurface in a four-dimensional ambient toric variety determined by a triangulation of a reflexive lattice polytope $\Delta_\text{tr}$. This four-dimensional polytope is systematically constructed from a three-dimensional lattice polytope $\Delta_3$ via $$\Delta_\text{tr} = \operatorname{conv}\!\left(\{(v,1)\mid v\in\operatorname{Vert}(\Delta_3)\} \cup\{(0,-1)\}\right)\,.$$
+
+
+### `databases/3dpoly.json`
+
+This database is obtained from the original [Kreuzer-Skarke database](https://hep.itp.tuwien.ac.at/~kreuzer/CY/CYcy.html) of 3d reflexive polytopes and is provided as pre-compiled JSON files.
+
+**Example entry (first component):**
+```json
+{
+  "id": 1,
+  "dimension": 3,
+  "num_vertices": 4,
+  "M_lattice": {
+    "points": 5,
+    "vertices": 4
+  },
+  "N_lattice": {
+    "points": 35,
+    "vertices": 4
+  },
+  "Picard_number": 19,
+  "Correction_term": 0,
+  "coordinates": [
+    [
+      1,
+      0,
+      0,
+      -1
+    ],
+    [
+      0,
+      1,
+      0,
+      -1
+    ],
+    [
+      0,
+      0,
+      1,
+      -1
+    ]
+  ]
+}
+```
+
+### `databases/trilayer.json`
+
+This database contains the four-dimensional reflexive polytopes $\Delta_\text{tr}$. These are obtained by taking the three-dimensional polytopes $\Delta_3$ from the `3dpoly.json` database and applying the trilayer construction.
+
+**Example entry (first component):**
+```json
+{
+  "id": 1,
+  "dimension": 4,
+  "num_vertices": 5,
+  "M_lattice": {
+    "points": 201,
+    "vertices": 5
+  },
+  "N_lattice": {
+    "points": 7,
+    "vertices": 5
+  },
+  "Picard_number_N": 1,
+  "Picard_number_M": 149,
+  "coordinates": [
+    [
+      -1,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      -1,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      -1,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      -1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "cy_is_favorable": true
+}
+```
+
 ## Scripts
+
+The following scripts to classify and store orientifold configurations for Calabi--Yau threefolds in toric ambient spaces have been written mostly based on the work by:
+
+1. **Andres Collinucci, Frederik Denef, Mboyo Esole**, *"D-brane Deconstructions in IIB Orientifolds"*. [arXiv:0805.1573](https://arxiv.org/abs/0805.1573)
+2. **Ralph Blumenhagen, Volker Braun, Thomas W. Grimm, Timo Weigand**, *"GUTs in Type IIB Orientifold Compactifications"*. [arXiv:0811.2936](https://arxiv.org/abs/0811.2936)
+3. **Andres Collinucci**, *"New F-theory lifts"*. [arXiv:0812.0175](https://arxiv.org/abs/0812.0175)
+4. **Andres Collinucci**, *"New F-theory lifts II: Permutation orientifolds and enhanced singularities"*. [arXiv:0906.0003](https://arxiv.org/abs/0906.0003)
+5. **Chiara Crinò, Fernando Quevedo, Andreas Schachner, Roberto Valandro**, *"A Database of Calabi-Yau Orientifolds and the Size of D3-Tadpoles"*. [arXiv:2204.13115](https://arxiv.org/abs/2204.13115) | [GitHub Repository](https://github.com/AndreasSchachner/CY_Orientifold_database)
+6. **Patrick Jefferson, Manki Kim**, *"On the intermediate Jacobian of M5-branes"*. [arXiv:2211.00210](https://arxiv.org/abs/2211.00210)
+7. **Jakob Moritz**, *"Orientifolding Kreuzer-Skarke"*. [arXiv:2305.06363](https://arxiv.org/abs/2305.06363)
+8. **Bjoern Hassfeld, Jakob Moritz**, *"Calabi-Yau Orientifold Hypersurfaces and their F-theory Uplifts"*. [arXiv:2606.19423](https://arxiv.org/abs/2606.19423) | [GitHub Repository](https://github.com/B-Hassfeld/CYorientifolds_FTheoryUplifts)
 
 ### 1. `generate_complete_orientifold_db_mixed.py`
 
@@ -173,7 +290,7 @@ for cy in db:
 
 ### 5. `verify_all_intB_relations.py`
 
-This script verifies the topological intersection relations between the Calabi--Yau threefold $X_3$ and its orientifold quotient base $B_3$. In the trilayer construction, the Calabi--Yau threefold $X_3$ embeds as a bisection of an auxiliary genus one fibered Calabi--Yau fourfold $\widetilde{Y}_4$ defined over $B_3$. Applying the adjunction formula to this geometry evaluates the topological invariants of $X_3$ directly from the intersection data of $B_3$.
+This script verifies the topological intersection relations between the Calabi--Yau threefold $X_3$ and its orientifold quotient base $B_3$. In the trilayer construction, the Calabi--Yau threefold $X_3$ embeds as a bisection of an auxiliary genus one fibered Calabi--Yau fourfold $\widetilde{Y}_4$ defined over $B_3$. Applying the adjunction formula to this geometry evaluates the topological invariants of $X_3$ directly from the intersection data of $B_3$. This script requires the `databases/3dpoly.json` and `databases/trilayer.json` databases to run.
 
 Using `cytools`, the script constructs the corresponding toric varieties and verifies the following identities:
 
