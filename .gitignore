@@ -1,8 +1,0 @@
-phys_sources/
-.ruff_cache
-.DS_Store
-__pycache__/
-*.pyc
-*.pyo
-tests/
-Handoff/
