@@ -389,7 +389,7 @@ $$\chi(S_{D7_{\mathrm{SO}(8)}}) = 8 \chi(S) = \int_{X_3} \left( 8 [S]^3 + 8 c_2(
 If the wrapped divisor admits complex structure deformations, the branes can recombine into a Whitney umbrella wrapping the homology class $8[S]$. The singular locus of the umbrella shifts the Euler characteristic:
 $$\chi(S_{D7_{\text{WU}}}) = \int_{X_3} \left( 344 [S]^3 + 8 c_2(TX_3) \wedge [S] \right)$$
 
-In the code, the $\text{SO}(8)$ stack contributes $8 \cdot (\text{c2D\_ op} + \text{D3\_ op})$, whereas the Whitney umbrella contributes $8 \cdot \text{c2D\_ op} + 344 \cdot \text{D3\_ op}$.
+<!-- In the code, the $\text{SO}(8)$ stack contributes $8 \cdot (\text{c2D\_ op} + \text{D3\_ op})$, whereas the Whitney umbrella contributes $8 \cdot \text{c2D\_ op} + 344 \cdot \text{D3\_ op}$. -->
 
 **Fourfold Euler Characteristics:**
 The D3-brane tadpole evaluated in the F-theory uplift requires the "stringy" Euler characteristic of the Calabi--Yau fourfold, $\chi_{\text{st}}(Y_4)$, which includes stringy corrections from terminal $\mathbb{Z}_2$ quotient singularities induced by O3-planes:
