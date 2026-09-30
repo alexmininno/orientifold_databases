@@ -16,11 +16,7 @@ The algebraic torus $T$ defining the ambient toric variety specifies a lattice $
 
 Calabi--Yau threefold hypersurfaces in toric ambient spaces are constructed via the correspondence between toric varieties and reflexive lattice polytopes. For a reflexive polytope $\Delta$ and its dual $\Delta^\circ$, the normal fan of $\Delta^\circ$ defines a toric fourfold containing a Calabi--Yau hypersurface. This hypersurface is resolved by refining the fan through a Fine, Regular, Star Triangulation (FRST) of $\Delta^\circ$. The Calabi--Yau is defined as the zero locus of a generic anticanonical polynomial, with its topological invariants—such as Hodge numbers and intersection numbers—extracted directly from the polytope combinatorics and the gauged linear sigma model (GLSM) charges of the toric divisors.
 
-To uplift a given Calabi--Yau threefold $X_3$ to an elliptically fibered Calabi--Yau fourfold $\pi: Y_4\to B_3$, a Weierstrass model is constructed over the orientifold quotient base $B_3= X_3/\iota$. A controlled class of such Calabi--Yau orientifolds is obtained through the trilayer polytope construction. Here, $X_3$ is realized as a hypersurface in a four-dimensional ambient toric variety determined by a triangulation of a reflexive lattice polytope $\Delta_\text{tr}$. This four-dimensional polytope is systematically constructed from a three-dimensional lattice polytope $\Delta_3$ via:
-
-$$
-\Delta_\text{tr} = \text{conv}\left(\{(v,1)\mid v\in\text{Vert}(\Delta_3)\} \cup\{(0,-1)\}\right)\,.
-$$
+To uplift a given Calabi--Yau threefold $X_3$ to an elliptically fibered Calabi--Yau fourfold $\pi: Y_4\to B_3$, a Weierstrass model is constructed over the orientifold quotient base $B_3= X_3/\iota$. A controlled class of such Calabi--Yau orientifolds is obtained through the trilayer polytope construction. Here, $X_3$ is realized as a hypersurface in a four-dimensional ambient toric variety determined by a triangulation of a reflexive lattice polytope $\Delta_\text{tr}$. This four-dimensional polytope is systematically constructed from a three-dimensional lattice polytope $\Delta_3$ via $$\Delta_\text{tr} = \text{conv}\left(\{(v,1)\mid v\in\text{Vert}(\Delta_3)\} \cup\{(0,-1)\}\right)\,.
 
 
 ### `databases/3dpoly.json`
@@ -299,22 +295,11 @@ This script verifies the topological intersection relations between the Calabi--
 Using `cytools`, the script constructs the corresponding toric varieties and verifies the following identities:
 
 1. **Triple Intersections**:
-
-   $$
-   \int_{X_3} k_a \wedge k_b \wedge k_c = 2 \kappa_{abc} = 2 \int_{B_3} j_a \wedge j_b \wedge j_c
-   $$
-
+   $$\int_{X_3} k_a \wedge k_b \wedge k_c = 2 \kappa_{abc} = 2 \int_{B_3} j_a \wedge j_b \wedge j_c$$
 2. **Second Chern Class Contractions**:
-
-   $$
-   \int_{X_3} c_2(TX_3) \wedge k_a = 2 \int_{B_3} j_a \wedge \left(c_1^2(TB_3) + c_2(TB_3)\right)
-   $$
-
+   $$\int_{X_3} c_2(TX_3) \wedge k_a = 2 \int_{B_3} j_a \wedge \left(c_1^2(TB_3) + c_2(TB_3)\right)$$
 3. **Euler Characteristics**:
-
-   $$
-   \chi(X_3) = 2 \int_{B_3} \left(c_3(TB_3) - c_1(TB_3)c_2(TB_3) - 2c_1(TB_3)^3\right)
-   $$
+   $$\chi(X_3) = 2 \int_{B_3} \left(c_3(TB_3) - c_1(TB_3)c_2(TB_3) - 2c_1(TB_3)^3\right)$$
 
 Here, $k_a$ are the K\"ahler cone generators on $X_3$ induced by its embedding into $\widetilde{Y}_4$, $\kappa_{abc}$ are the intersection numbers on $B_3$, and $j_a$ are the K\"ahler cone generators on the base $B_3$.
 
@@ -350,10 +335,8 @@ Each orientifold entry explicitly contains the following fields:
 - `SCANON`: The canonical sign $S_{\text{canon}} \in \{1, -1\}$ chosen for the orientifold action.
 - `BCANON`: A list of signs $b_{\text{canon}} \in \{1, -1\}$ for each homogeneous coordinate, defining the diagonal sign shift of the canonical representative involution orbit.
 - `SOMEGA`: The orientifold projection choice $S_O$. Mathematically, this is defined as:
-
-  $$
-  S_O = S_{\text{canon}} \cdot \text{sign}(P) \cdot \prod b_{\text{canon}}
-  $$
+  $$S_O = S_{\text{canon}} \cdot \text{sign}(P) \cdot \prod b_{\text{canon}}$$
+  
   Setting $S_O = +1$ corresponds to the O3/O7-plane configurations, while $S_O = -1$ defines O5/O9-planes. In the code, this is computed as `S_Omega = S_canon * sign_perm * prod_b_canon`, where `sign_perm` is the parity of the coordinate permutation $P$ and `prod_b_canon` is the product of signs acquired by the defining polynomials.
 - `is_reducible`: A boolean flag indicating whether the Calabi--Yau vanishes identically under the orientifold equations: `S_canon * parity_lam == -1`, where `parity_lam = (-1) ** ((h11 - trace) // 2)` is the determinant of the induced action on the $H^{1,1}$ cohomology.
 - `integer_hodge`: A boolean indicating whether the equivariant Hodge numbers are strictly integers.
@@ -361,13 +344,11 @@ Each orientifold entry explicitly contains the following fields:
 ### Equivariant Hodge Numbers
 The orientifold projection splits the cohomology groups $H^{p,q}(X_3)$ into even and odd eigenspaces under the pull-back of the involution, decomposing the K\"ahler and complex structure moduli spaces into invariant and anti-invariant sectors. The dimensions of these eigenspaces are determined by:
 
-$$
-\begin{aligned}
-h^{1,1}_{\pm} &= \frac{1}{2} \left(h^{1,1} \pm \text{Tr}(\Lambda)\right) \\
-h^{2,1}_+ &= \frac{1}{2} \left( h^{2,1} + 1 - S_O + h^{1,1}_+ - h^{1,1}_- - \frac{1}{2} \chi_{\text{fix}} \right) \\
-h^{2,1}_- &= h^{2,1} - h^{2,1}_+
-\end{aligned}
-$$
+$$h^{1,1}_{\pm} = \frac{1}{2} \left(h^{1,1} \pm \text{Tr}(\Lambda)\right)$$
+
+$$h^{2,1}_+ = \frac{1}{2} \left( h^{2,1} + 1 - S_O + h^{1,1}_+ - h^{1,1}_- - \frac{1}{2} \chi_{\text{fix}} \right)$$
+
+$$h^{2,1}_- = h^{2,1} - h^{2,1}_+$$
 The parameter $S_O$ (labeled `SOMEGA` in the JSON) encodes the choice of the orientifold projection; setting $S_O = +1$ corresponds to O3/O7-plane configurations, while $S_O = -1$ defines O5/O9-planes. The total Euler characteristic of the fixed loci, $\chi_{\text{fix}}$, decomposes into the sum of the Euler characteristics of the codimension-one fixed surfaces and the number of isolated fixed points.
 
 In the code, this decomposition is evaluated by projecting the coordinate permutation matrix $P$ onto the Picard lattice using the GLSM charge matrix $Q$. This defines $\Lambda = Q P Q^{-1}$, whose trace determines the K\"ahler moduli splitting:
@@ -392,31 +373,19 @@ For a specific combination of O7-plane configurations, the JSON logs:
 
 **D3-Brane Charges:**
 The net D3-brane charge $N_{D3}$ induced by the localized sources is evaluated in the double cover $X_3$:
-
-$$
-N_{D3} = \frac{N_{O3}}{2} + \frac{\chi(S)}{6} + \frac{\chi(S_{D7})}{24}
-$$
+$$N_{D3} = \frac{N_{O3}}{2} + \frac{\chi(S)}{6} + \frac{\chi(S_{D7})}{24}$$
 - `N_D3`: The fractional D3-charge budget.
 - `N_flux_frac`: The fractional part of the gauge flux contribution.
 - `N_D3_mobile_max`: The maximum integer number of mobile D3-branes.
 
 For a generic smooth divisor $S_{D7}$, the Euler characteristic is computed by integrating the top Chern class via the adjunction formula:
-
-$$
-\chi(S_{D7}) = \int_{X_3} \left( [S_{D7}]^3 + c_2(TX_3) \wedge [S_{D7}] \right)
-$$
+$$\chi(S_{D7}) = \int_{X_3} \left( [S_{D7}]^3 + c_2(TX_3) \wedge [S_{D7}] \right)$$
 
 If an O7-plane wraps a rigid divisor, the tadpole is canceled locally by an $\text{SO}(8)$ stack—four D7-branes and their orientifold images placed exactly on the O7-plane locus $S$. Their total Euler characteristic is eight times that of $S$:
-
-$$
-\chi(S_{D7_{\mathrm{SO}(8)}}) = 8 \chi(S) = \int_{X_3} \left( 8 [S]^3 + 8 c_2(TX_3) \wedge [S] \right)
-$$
+$$\chi(S_{D7_{\mathrm{SO}(8)}}) = 8 \chi(S) = \int_{X_3} \left( 8 [S]^3 + 8 c_2(TX_3) \wedge [S] \right)$$
 
 If the wrapped divisor admits complex structure deformations, the branes can recombine into a Whitney umbrella wrapping the homology class $8[S]$. The singular locus of the umbrella shifts the Euler characteristic:
-
-$$
-\chi(S_{D7_{\text{WU}}}) = \int_{X_3} \left( 344 [S]^3 + 8 c_2(TX_3) \wedge [S] \right)
-$$
+$$\chi(S_{D7_{\text{WU}}}) = \int_{X_3} \left( 344 [S]^3 + 8 c_2(TX_3) \wedge [S] \right)$$
 
 In the code, the $\text{SO}(8)$ stack contributes $8 \cdot (\text{c2D\_ op} + \text{D3\_ op})$, whereas the Whitney umbrella contributes $8 \cdot \text{c2D\_ op} + 344 \cdot \text{D3\_ op}$.
 
